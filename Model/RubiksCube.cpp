@@ -360,7 +360,7 @@ uint8_t RubiksCube::getCornerIndex(uint8_t ind) const {
 
 
 /*
-    Orientation is decided by where W (or Y) appears:
+    Orientation is decided by where W (or Y) appears
     index 0 → orientation 0
     index 1 → orientation 1
     index 2 → orientation 2
