@@ -2,8 +2,9 @@
 // Created by Abhay on 29-11-2025.
 //
 
-#ifndef RUBIKCUBESOLVER_RUBIKSCUBE_H
-#define RUBIKCUBESOLVER_RUBIKSCUBE_H
+// File Safe Guards
+#ifndef RUBIKCUBESOLVER_RUBIKSCUBE_H  // #ifndef -> if not define.
+#define RUBIKCUBESOLVER_RUBIKSCUBE_H  // #define -> define it.
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -51,11 +52,14 @@ public:
      * The rows and columns are 0-indexed.
      * @param Face, row, and column index
      */
+
     virtual COLOR getColor(FACE face, unsigned row, unsigned col) const = 0;
 
     /*
      * Returns the first letter of the given COLOR
      * Eg: For COLOR::GREEN, it returns 'G'
+     * We are making it static because it does not depend on the objects(derived class), like it does not depend on the face,
+     * orientation , different model ... It only need color name and simply returns the first letter.
      */
     static char getColorLetter(COLOR color);
 
@@ -121,6 +125,8 @@ public:
 
     /*
      * Perform moves on the Rubik Cube
+     * This function applies a move to the current Rubik’s Cube and returns a reference to the same object,
+     * enabling method chaining and avoiding unnecessary object copying.
      */
     RubiksCube &move(MOVE ind);
 
@@ -175,7 +181,9 @@ public:
     virtual RubiksCube &bPrime() = 0;
 
     virtual RubiksCube &b2() = 0;
-
+    /* uint8_t is a fixed-size 8-bit ( 1byte) unsigned integer used when small, non-negative values are needed
+    with guaranteed size. We are avoiding to use integer because it ends up taking 4byte and we don't want
+    to store that large number so it will waste memory unnecessary. */
     string getCornerColorString(uint8_t ind) const;
 
     uint8_t getCornerIndex(uint8_t ind) const;
@@ -184,3 +192,4 @@ public:
 };
 
 #endif //RUBIKCUBESOLVER_RUBIKSCUBE_H
+// defining completed.

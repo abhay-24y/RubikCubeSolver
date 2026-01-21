@@ -72,17 +72,11 @@ string RubiksCube::getMove(MOVE ind) {
     }
 }
 
-
 /*
 * Perform a move operation on using a Move index.
-* RubiksCube &move(MOVE ind);
-    It is a function named move
-    It accepts an argument ind of type MOVE
-    It returns a reference to RubiksCube object
-* RubiksCube &RubiksCube::move(MOVE ind)
-    We are defining the function move() of class RubiksCube
-    It returns a reference to the same RubiksCube object.
- */
+// In short : It performs the move and returns the reference
+to current Rubik's cube on which it performed the move.
+*/
 RubiksCube &RubiksCube::move(MOVE ind) {
     switch (ind) {
         case MOVE::L:
@@ -181,6 +175,8 @@ void RubiksCube::print() const {
     cout << "Rubik's Cube:\n\n";
 
     for (int row = 0; row <= 2; row++) {
+        //                       1234567U
+        // We leave 7 spaces for L L L  F
         for (unsigned i = 0; i < 7; i++) cout << " ";
         for (int col = 0; col <= 2; col++) {
             cout << getColorLetter(getColor(FACE::UP, row, col)) << " ";
@@ -233,6 +229,8 @@ void RubiksCube::print() const {
  * static_cast<new_type>(expression)
     new_type   -> The type you want to convert to
     expression -> The value or variable you want to convert
+   rand() always gives : 1804289383
+   time(0) Returns current time in seconds since Jan 1, 1970
  */
 
 vector<RubiksCube::MOVE> RubiksCube::randomShuffleCube(unsigned int times) {
@@ -246,6 +244,12 @@ vector<RubiksCube::MOVE> RubiksCube::randomShuffleCube(unsigned int times) {
     return moves_performed;
 }
 
+/*
+    Color string    → WHAT colors it has
+    Position (ind)  → WHERE the corner is, it is passed as parameter in the getCornerIndex(uint8_t ind)
+    Corner index    → WHICH solved-cube corner it is
+    Orientation     → HOW it is twisted
+ */
 
 //Helper function returns string of corner
 string RubiksCube::getCornerColorString(uint8_t ind) const {
@@ -314,9 +318,19 @@ string RubiksCube::getCornerColorString(uint8_t ind) const {
 
 
 /*
- * We prefer uint8_t when we need exact 1-byte storage with values 0–255, especially in systems where memory, mapping, and binary data matter.
+    We prefer uint8_t when we need exact 1-byte storage with values 0–255, especially in systems where memory,
+    mapping, and binary data matter.
+*/
+/*  White(0)/Yellow(1) , Red(0)/Orange(1) , Green(0)/Blue(1).
+    (0)->000 : WRB
+    (1)->001 : WRG
+    (2)->010 : WOB
+    (3)->011 : WOG
+    (4)->100 : YRB
+    (5)->101 : YRG
+    (6)->110 : YOB
+    (7)->111 : YOG
  */
-
 uint8_t RubiksCube::getCornerIndex(uint8_t ind) const {
     string corner = getCornerColorString(ind);
 
@@ -345,6 +359,15 @@ uint8_t RubiksCube::getCornerIndex(uint8_t ind) const {
 }
 
 
+/*
+    Orientation is decided by where W (or Y) appears:
+    index 0 → orientation 0
+    index 1 → orientation 1
+    index 2 → orientation 2
+    “I only need to know which orientation it is currently.
+    If it is in 1, I do 2 orientation changes and I reach 0.
+    Solution bingo.”
+ */
 uint8_t RubiksCube::getCornerOrientation(uint8_t ind) const {
     string corner = getCornerColorString(ind);
 
