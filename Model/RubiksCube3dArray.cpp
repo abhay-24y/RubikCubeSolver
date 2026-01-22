@@ -2,12 +2,15 @@
 // Created by Abhay on 01-12-2025.
 //
 
-#include "RubiksCube.h";
+#include "RubiksCube.h"
 
 class RubiksCube3dArray : public RubiksCube {
 private:
+    // This rotateFace function is used to rotate face when we are performing any move like u or l etc.
+    // For ex: when we perform u move : the up face is also rotated and we do that using this function. So this function
+    // is generic for all the faces . Give face index and it will rotate it .
     void rotateFace(int ind) {
-        // ind(index) face ko store kar rha hu temporary. Ex: 0 means front face;
+        // ind(index) face ko store kar rha hu temporary. Ex: 0 means UP face;
         char temp_arr[3][3] = {};
         for (int i=0 ; i<3 ;i++) {
             for (int j=0 ; j<3 ;j++) {
@@ -272,6 +275,9 @@ public:
     }
 };
 
+// To uniquely identify a Rubik’s Cube state using a number : Rubik’s Cube → String → Number
+// size_t is just a number used for sizes and hash values, similar to unsinged long long
+// hash<string>()(str) -> This uses C++’s built-in string hash function.
 struct Hash3d {
     size_t operator()(const RubiksCube3dArray &r1) const {
         string str = "";
