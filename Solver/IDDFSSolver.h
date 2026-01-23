@@ -23,7 +23,7 @@ public:
         max_search_depth = _max_search_depth;
     }
 
-    // Used DFSSolver with increasing max_search_depth
+    // Used DFSSolver with increasing max_search_depth.
     vector<RubiksCube::MOVE> solve() {
         for (int i=1 ; i<=max_search_depth ; i++) {
             DFSSolver<T,H> dfsSolver(rubiksCube,i);
