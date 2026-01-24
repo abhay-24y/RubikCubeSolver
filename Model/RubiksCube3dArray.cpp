@@ -276,7 +276,7 @@ public:
 };
 
 // To uniquely identify a Rubik’s Cube state using a number : Rubik’s Cube → String → Number
-// size_t is just a number used for sizes and hash values, similar to unsinged long long
+// size_t is just a number used for sizes and hash values, similar to unsinged long long.
 // hash<string>()(str) -> This uses C++’s built-in string hash function.
 struct Hash3d {
     size_t operator()(const RubiksCube3dArray &r1) const {

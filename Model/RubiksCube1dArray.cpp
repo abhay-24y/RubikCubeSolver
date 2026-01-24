@@ -252,6 +252,7 @@ public:
     }
 };
 
+//Custom hash function.
 struct Hash1d {
     size_t operator()(const RubiksCube1dArray &r1) const {
         string str = "";
