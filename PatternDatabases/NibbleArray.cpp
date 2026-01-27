@@ -12,7 +12,7 @@ NibbleArray::NibbleArray(const size_t size, const uint8_t val) :
 
 uint8_t NibbleArray::get(const size_t pos) const {
     size_t i = pos / 2;
-    assert(pos <= this->size);
+    assert(pos <= this->size); // Check position should be within the range.
     uint8_t val = this->arr.at(i);
 
     //    Odd pos: last 4 bits
