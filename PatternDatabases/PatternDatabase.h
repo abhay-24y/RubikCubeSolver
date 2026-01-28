@@ -11,12 +11,19 @@
 
 using namespace std;
 
+/*
+PatternDatabase :
+-> database  → values
+-> size      → capacity
+-> numItems  → filled
+*/
 
 class PatternDatabase {
     NibbleArray database;
     size_t size;
     size_t numItems;
 
+    // Private Constructor to prevent object creation without knowing size.
     PatternDatabase();
 
 public:
@@ -24,6 +31,8 @@ public:
     //    Testing for init_val
     PatternDatabase(const size_t size, uint8_t init_val);
 
+    /* Given a cube, what is its index in the pattern database? */
+    /* uint32_t can store up to ~4 billion */
     virtual uint32_t getDatabaseIndex(const RubiksCube &cube) const = 0;
 
     virtual bool setNumMoves(const RubiksCube &cube, const uint8_t numMoves);
@@ -34,10 +43,13 @@ public:
 
     virtual uint8_t getNumMoves(const uint32_t ind) const;
 
+    /*
+        size      → total capacity
+        numItems  → filled entries
+        isFull()  → numItems == size ?
+    */
     virtual size_t getSize() const;
-
     virtual size_t getNumItems() const;
-
     virtual bool isFull() const;
 
     virtual void toFile(const string &filePath) const;
