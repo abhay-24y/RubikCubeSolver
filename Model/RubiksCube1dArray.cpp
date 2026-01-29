@@ -17,7 +17,7 @@ private:
         char temp_arr[9] = {};
         for (int i=0; i<3 ; i++) {
             for (int j=0; j<3 ; j++) {
-                temp_arr[i*3+j] = cube[getIndex(0,i,j)];
+                temp_arr[i*3+j] = cube[getIndex(ind,i,j)];
             }
         }
         for (int i = 0; i < 3; i++) cube[getIndex(ind, 0, i)] = temp_arr[getIndex(0, 2 - i, 0)];
@@ -55,6 +55,10 @@ public:
             default:
                 return COLOR::WHITE;
         }
+    }
+
+    void setColor(FACE face, int row, int col, COLOR color) override {
+        cube[getIndex((int)face, (int)row, (int)col)] = getColorLetter(color);
     }
 
     bool isSolved() const override {
