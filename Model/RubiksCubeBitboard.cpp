@@ -21,6 +21,7 @@ private:
         bitboard[ind] = (bitboard[ind] << 16) | (side);
     }
 
+
     void rotateSide(int s1, int s1_1, int s1_2, int s1_3, int s2, int s2_1, int s2_2, int s2_3) {
         uint64_t clr1 = (bitboard[s2] & (one_8 << (8 * s2_1))) >> (8 * s2_1);
         uint64_t clr2 = (bitboard[s2] & (one_8 << (8 * s2_2))) >> (8 * s2_2);
@@ -101,6 +102,16 @@ public:
             bit_pos++;
         }
         return (COLOR)(bit_pos - 1);
+    }
+
+    void setColor(FACE face, int row, int col, COLOR color) override {
+        int idx = arr[row][col];
+        if (idx == 8) return;
+
+        bitboard[(int)face] &= ~(one_8 << (8 * idx));
+
+        uint64_t newColor = (1ULL << (int)color);
+        bitboard[(int)face] |= (newColor << (8 * idx));
     }
 
     bool isSolved() const override {
