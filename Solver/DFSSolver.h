@@ -1,7 +1,16 @@
 //
 // Created by Abhay on 23-01-2026.
 //
-#include<bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+#include <unordered_map>
+#include <unordered_set>
+#include <queue>
+#include <stack>
+#include <cmath>
+#include <cstdint>
 #include "../Model/RubiksCube.h"
 
 #ifndef RUBIKCUBESOLVER_DFSSOLVER_H
