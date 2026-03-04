@@ -3,6 +3,7 @@
 //
 
 #include "PatternDatabase.h"
+#include <fstream>
 
 using namespace std;
 

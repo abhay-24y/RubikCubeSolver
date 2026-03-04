@@ -5,7 +5,17 @@
 #ifndef RUBIKCUBESOLVER_NIBBLEARRAY_H
 #define RUBIKCUBESOLVER_NIBBLEARRAY_H
 
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+#include <unordered_map>
+#include <unordered_set>
+#include <queue>
+#include <stack>
+#include <cmath>
+#include <cstdint>
+
 
 using namespace std;
 

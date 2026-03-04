@@ -6,7 +6,17 @@
 #ifndef RUBIKCUBESOLVER_RUBIKSCUBE_H  // #ifndef -> if not define.
 #define RUBIKCUBESOLVER_RUBIKSCUBE_H  // #define -> define it.
 
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+#include <unordered_map>
+#include <unordered_set>
+#include <queue>
+#include <stack>
+#include <cmath>
+#include <cstdint>
+
 using namespace std;
 
 /**
@@ -33,7 +43,8 @@ public:
         RED,
         BLUE,
         ORANGE,
-        YELLOW
+        YELLOW,
+        UNKNOWN
     };
 
     enum class MOVE {
@@ -54,6 +65,16 @@ public:
      */
 
     virtual COLOR getColor(FACE face, unsigned row, unsigned col) const = 0;
+
+    /*
+     * Sets the color of the cell at (row, col) in the given face.
+     * If Rubik's Cube face is pointing at you, then the row numbering starts from the
+     * top to bottom, and column numbering starts from the left to right.
+     * The rows and columns are 0-indexed.
+     * @param Face, row, column and color.
+     */
+    virtual void setColor(FACE face, int row, int col, COLOR color) = 0;
+
 
     /*
      * Returns the first letter of the given COLOR
